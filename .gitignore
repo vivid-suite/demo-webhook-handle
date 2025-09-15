@@ -1,0 +1,30 @@
+# File: .gitignore
+# Purpose: Ignore Python and local environment artifacts.
+# Why: Keep repository clean and reproducible.
+# Related: README.md
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.eggs/
+
+# Virtual envs
+.venv/
+.venv*/
+venv/
+
+# Env files
+.env
+.env.*
+
+# OS/Editor
+.DS_Store
+.idea/
+.vscode/
+
+# Docker
+*.log

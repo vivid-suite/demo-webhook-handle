@@ -1,0 +1,20 @@
+# File: docker-compose.yml
+# Purpose: Local/dev orchestration for demo-webhook-handle container.
+# Why: Simple one-command bring-up; binds only to loopback for safety.
+# Related: Dockerfile, app/main.py, ops/nginx/webhook-handle.conf
+
+version: "3.9"
+services:
+  webhook-handle:
+    build: .
+    image: vivid-suite/demo-webhook-handle:latest
+    container_name: demo-webhook-handle
+    environment:
+      - PORT=8004
+      - ALLOWED_ORIGINS=http://localhost:4321,https://vividsuite.io
+      - ALLOW_NETLIFY_WILDCARD=true
+      - WEBHOOK_SECRET=changeme
+    # Bind to loopback to keep service private on the VM; NGINX proxies from :443
+    ports:
+      - "127.0.0.1:8004:8004"
+    restart: unless-stopped
